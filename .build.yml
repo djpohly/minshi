@@ -4,11 +4,11 @@ packages:
   - wayland
   - scdoc
 sources:
-  - https://github.com/emersion/kanshi
+  - https://github.com/djpohly/minshi
 tasks:
   - setup: |
-      cd kanshi
+      cd minshi
       meson build -Dauto_features=enabled
   - build: |
-      cd kanshi
+      cd minshi
       ninja -C build

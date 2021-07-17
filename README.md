@@ -1,13 +1,19 @@
-# [kanshi]
+# [minshi]
 
-kanshi allows you to define output profiles that are automatically enabled and
-disabled on hotplug. For instance, this can be used to turn a laptop's internal
-screen off when docked.
+minshi is a simple program, in the spirit of [srandrd](https://github.com/jceb/srandrd),
+which listens for monitor connect/disconnect events and prints the event info to
+standard output.  For a more full-fledged output layout profile manager, see
+[kanshi], of which minshi is a minimal, stripped-down version (hence the name).
 
-This is a Wayland equivalent for tools like [autorandr]. kanshi can be used on
-Wayland compositors supporting the wlr-output-management protocol.
+When an output is connected, minshi will print a single line,
 
-Join the IRC channel: #emersion on Libera Chat.
+    connect <TAB> <output name>
+
+and when an output is disconnected, minshi will print
+
+    disconnect <TAB> <output name>
+
+minshi can be used on any Wayland compositor which implements the wlr-output-management protocol.
 
 ## Building
 
@@ -24,41 +30,17 @@ ninja -C build
 ## Usage
 
 ```sh
-mkdir -p ~/.config/kanshi && touch ~/.config/kanshi/config
-kanshi
+minshi | handler-program
 ```
 
-## Configuration file
-
-Each output profile is delimited by brackets. It contains several `output`
-directives (whose syntax is similar to `sway-output(5)`). A profile will be
-enabled if all of the listed outputs are connected.
-
-```
-profile {
-	output LVDS-1 disable
-	output "Some Company ASDF 4242" mode 1600x900 position 0,0
-}
-
-profile {
-	output LVDS-1 enable scale 2
-}
-```
-
-## Contributing
-
-The upstream repository can be found [on SourceHut][repo]. Open tickets [on
-the SourceHut tracker][issue-tracker]. Send patches
-[on the mailing list][mailing-list] or open pull requests
-[on the GitHub mirror][github].
+where `handler-program` is any executable program or script that will handle
+monitor events.  If you would like multiple things to happen on connect or
+disconnect, you can bundle that functionality into a single handler, or
+you can also run multiple instances of minshi.
 
 ## License
 
 MIT
 
 [kanshi]: https://wayland.emersion.fr/kanshi/
-[autorandr]: https://github.com/phillipberndt/autorandr
-[repo]: https://git.sr.ht/~emersion/kanshi
-[issue-tracker]: https://todo.sr.ht/~emersion/kanshi
-[mailing-list]: https://lists.sr.ht/~emersion/public-inbox
-[github]: https://github.com/emersion/kanshi
+[srandrd]: https://github.com/jceb/srandrd/
