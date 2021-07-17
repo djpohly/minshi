@@ -58,8 +58,7 @@ if scdoc.found()
 	sh = find_program('sh', native: true)
 	mandir = get_option('mandir')
 	man_files = [
-		'kanshi.1.scd',
-		'kanshi.5.scd',
+		'minshi.1.scd',
 	]
 	foreach filename : man_files
 		topic = filename.split('.')[-3].split('/')[-1]
