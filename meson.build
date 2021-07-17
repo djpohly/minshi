@@ -42,9 +42,7 @@ executable(
 	meson.project_name(),
 	files(
 		'main.c',
-		'parser.c',
 	),
-	include_directories: include_directories('include'),
 	dependencies: [wayland_client, client_protos],
 	install: true,
 )
